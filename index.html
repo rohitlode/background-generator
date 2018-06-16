@@ -1,0 +1,83 @@
+<html>
+<title></title>
+<head></head>
+<style>
+body{
+background : linear-gradient(to right,#091929,#4d5d6d);
+text-align : center;
+font-family: 'raleway',sans-serif;
+font-size : 2rem;
+letter-spacing : .5em;
+font-weight : 600;
+}
+h3{
+font-size : 1rem;
+font-weight : 200;
+letter-spacing : 0;
+}
+</style>
+<body onload="tra()">
+
+<h1>BACKGROUND GENERATOR</hey></h1>
+	<input id='color1' type='color' value="#ff0000">
+	<input id='color2' type='color' value="#00ff00">
+	<h3></h3>
+	<h4>Want to Generate random color???<button onclick="get()">GO</button></h4>
+	
+	<script>
+		var body = document.querySelector("body");
+		var color1 = document.getElementById('color1');
+		var color2 = document.getElementById('color2');
+	
+		
+		function set(){
+		body.style.background="linear-gradient(to right,"+color1.value+","+color2.value+")";
+		}
+		
+		color1.addEventListener("input",set);
+		color2.addEventListener("input",set);
+		
+		var grad = window.getComputedStyle(document.body,null).getPropertyValue("background-image");
+		var grads = grad.split("rgb");
+		var grad1 = grads[1].slice(1,-3).split(",");
+		var grad2 = grads[2].slice(1,-2).split(",");
+		var h3 = document.querySelector('h3');
+		//console.log(grad1[1]>=15);
+		
+		function getValue(grad){
+		var sum="";
+		for(var i=0;i<grad.length;i++){
+		var x= parseInt(grad[i],10).toString(16);
+		if(grad[i]<=15){
+		x="0"+x;
+		}
+		sum+=x;
+		}
+		return("#"+sum);
+		}
+		
+		function tra(){
+		color1.value=getValue(grad1);
+		color2.value=getValue(grad2);
+		h3.textContent=" Linear-Gradient :"+grad+";"
+		}
+		
+		function get(){
+		var ran1 = [Math.round(Math.random()*255),Math.round(Math.random()*255),Math.round(Math.random()*255)];
+		var ran2 = [Math.round(Math.random()*255),Math.round(Math.random()*255),Math.round(Math.random()*255)];
+		var clr1 = color1.value = getValue(ran1);
+		var clr2 = color2.value = getValue(ran2);
+		//callback(test,clr1,clr2);
+		body.style.background="linear-gradient(to right,"+clr1+","+clr2+")";
+		console.log(clr1+" "+clr2);
+		//console.log(Math.round(Math.random()*255));
+		}
+		
+	</script>
+	
+</body>
+
+
+
+
+</html>	
