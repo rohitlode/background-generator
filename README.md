@@ -1,3 +1,3 @@
 # background-generator
 
-Genearting a random background color using buttons.
+Generating a random background color using buttons.
